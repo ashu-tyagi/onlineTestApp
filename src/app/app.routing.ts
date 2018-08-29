@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {Router ,RouterModule, Routes} from '@angular/router';
+import {  RouterModule, Routes} from '@angular/router';
 import { AppHomeComponent} from './layout/home/home.component';
 import { AppTestComponent} from './layout/test/test.component';
 
@@ -32,6 +32,6 @@ const appRoutes : Routes = [
 
 })
 
-export class AppRoutingModule{
+export class AppRoutingModule {
 
 }

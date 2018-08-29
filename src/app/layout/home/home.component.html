@@ -1,5 +1,5 @@
 <mat-card>
-  <hello name="{{ name }}"></hello>
+  <!--<hello name="{{ name }}"></hello>-->
 <p>
   put your information to start
  {{user|json}}
@@ -10,7 +10,7 @@
       [colspan]="1"
       [rowspan]="1"
        >
-  
+
   </mat-grid-tile>
   <mat-grid-tile
       [colspan]="1"
@@ -30,7 +30,7 @@
   <mat-form-field>
     <mat-select placeholder="Type of test" name="testtype"  [(ngModel)]="user.testType"  >
       <mat-option *ngFor="let test of listOfTest"  [value]="test.code">{{test.name}}</mat-option>
-   
+
     </mat-select>
   </mat-form-field>
 
@@ -44,7 +44,7 @@
       [colspan]="1"
       [rowspan]="1"
        >
- 
+
   </mat-grid-tile>
 </mat-grid-list>
 
