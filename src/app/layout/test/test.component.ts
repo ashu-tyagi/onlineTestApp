@@ -1,13 +1,32 @@
-import { Component } from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
+import {Router} from '@angular/router';
+import {SharedDataService} from '../../shared/shared-data.service';
+import {SessionStorageService} from 'ngx-webstorage';
 
 
 @Component({
   selector : 'app-test',
-  templateUrl: './test.component.html'
+  templateUrl: './test.component.html',
+  styles : [`
+    .example-radio-group {
+      display: inline-flex;
+      flex-direction: column;
+    }
+    .example-radio-button {
+       margin: 5px;
+     }
+
+    .example-selected-value {
+      margin: 15px 0;
+    }
+    .widthfull{
+      width:100%;
+    }
+  `]
 })
 
 
-export class AppTestComponent {
+export class AppTestComponent implements  OnDestroy {
 
   test: string = "NG test";
   relationship = '';
@@ -22,7 +41,7 @@ export class AppTestComponent {
     quesNo: 1 ,
     options:[
       {
-        descr:"Framework",
+        desc : "Framework",
         seq:"12"
       },
       {
@@ -41,7 +60,8 @@ export class AppTestComponent {
     ],
     answer: 12,
     answerFilled:''
-  }
+  };
+
 
   /**
    * @description Initialize function
@@ -49,24 +69,23 @@ export class AppTestComponent {
    * @param {object} NavController - The title of the book.
    * @param {object} NavParams - The author of the book.
    */
-  constructor( public navCtrl: NavController,
-               public navParams: NavParams,
-               public sharedDataService: SharedDataService ) {
-    this.user = this.navParams.get('data');
+  constructor( public router: Router,
+               public sharedDataService: SharedDataService,
+               private sessionStorageService: SessionStorageService) {
+    this.user = this.sessionStorageService.retrieve('user');
     this.questionList = sharedDataService.getExamQuestions();
-    this.questionList.map((item)=>{
-      item.answerFilled='';
+    this.questionList.map((item) => {
+      item.answerFilled = '';
     })
     this.loadQuestion();
-    this.t1.setHours( 0,20,0,0);
+    this.t1.setHours( 0, 20 , 0 , 0 );
     this.timer = this.t1.getTime() ;
-    this.timerInterval =setInterval(()=>{
-      this.timer = this.timer  -1000;
-    },1000)
-
-    setTimeout(()=>{
+    this.timerInterval = setInterval(() => {
+      this.timer = this.timer  - 1000;
+    }, 1000);
+    setTimeout(() => {
       this.completeTest();
-    },720000)
+    }, 720000);
 
   }
   /**
@@ -74,15 +93,10 @@ export class AppTestComponent {
    * @description Finish the test
    * @method
    */
-  completeTest(){
+  completeTest () {
     this.selectedAnswer();
-    this.navCtrl.push(ResultPage,{
-      data: {
-        user:this.user,
-        test:{seq:12,
-          score:this.score}
-      }
-    });
+    this.sessionStorageService.store('user', this.user);
+    this.router.navigate(['/result']);
   }
 
   /**
@@ -91,8 +105,8 @@ export class AppTestComponent {
    * @method loadQuestion
    */
 
-  loadQuestion(){
-    this.ques = this.questionList[this.currentQuestion-1];
+  loadQuestion() {
+    this.ques = this.questionList[this.currentQuestion - 1];
   }
 
   /**

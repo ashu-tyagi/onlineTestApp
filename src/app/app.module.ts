@@ -1,11 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {AppRoutingModule} from './app.routing';
-import { AppHomeComponent} from './layout/home/home.component';
-import { AppTestComponent} from './layout/test/test.component';
+import {Ng2Webstorage} from 'ngx-webstorage';
 import {  MatAutocompleteModule,
   MatBadgeModule,
   MatBottomSheetModule,
@@ -41,13 +38,18 @@ import {  MatAutocompleteModule,
   MatToolbarModule,
   MatTooltipModule,
   MatTreeModule} from '@angular/material';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { AppHomeComponent} from './layout/home/home.component';
+import { AppTestComponent} from './layout/test/test.component';
+import { ResultComponent } from './layout/result/result.component';
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppHomeComponent,
-    AppTestComponent
+    AppTestComponent,
+    ResultComponent
   ],
   imports: [
     BrowserModule,
@@ -88,7 +90,8 @@ import {FormsModule} from '@angular/forms';
     MatTabsModule,
     MatToolbarModule,
     MatTooltipModule,
-    MatTreeModule
+    MatTreeModule,
+    Ng2Webstorage
   ],
   providers: [],
   bootstrap: [AppComponent]

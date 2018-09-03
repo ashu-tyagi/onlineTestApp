@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router} from '@angular/router';
+import {SessionStorageService} from 'ngx-webstorage';
 
 @Component({
   selector : 'app-home',
@@ -39,30 +40,22 @@ name = 'Welcome to Exam Skill Test ';
   },
   ]
 
-    constructor(private router: Router){
+    constructor(private router: Router, private sessionStorageService: SessionStorageService){
 
     }
 
     submitCheck() {
-    if(this.user.name && this.user.email && this.user.testType){
-      
+    if (this.user.name && this.user.email && this.user.testType) {
       this.nextPage();
-    } else{
-     alert('Input the data')
+    } else {
+     alert('Input the data');
     }
-    
   }
 
-nextPage()
-{
-  console.log(this.user);
-  // todo navigate to another page
-// this.navCtrl.push(TestPage,{
-//       data: this.user
-//     });
-
-this.router.navigate(['/test']);
-}
+  nextPage() {
+    this.sessionStorageService.store( 'user', this.user );
+    this.router.navigate(['/test']);
+  }
 
 }
 
