@@ -43,13 +43,22 @@ import { AppHomeComponent} from './layout/home/home.component';
 import { AppTestComponent} from './layout/test/test.component';
 import { ResultComponent } from './layout/result/result.component';
 import { AppComponent } from './app.component';
+import { AddQuestionComponent } from './layout/dashboard/add-question/add-question.component';
+import {RouterModule, Routes} from '@angular/router';
+
+
+const routes: Routes = [
+  { path: 'add-question', component: AddQuestionComponent },
+];
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AppHomeComponent,
     AppTestComponent,
-    ResultComponent
+    ResultComponent,
+    AddQuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +100,8 @@ import { AppComponent } from './app.component';
     MatToolbarModule,
     MatTooltipModule,
     MatTreeModule,
-    Ng2Webstorage
+    Ng2Webstorage,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
