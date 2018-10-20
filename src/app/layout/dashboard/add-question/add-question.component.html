@@ -1,0 +1,37 @@
+<mat-card>
+    <div class="example-container">
+        <div fxLayout="row" fxLayoutAlign="space-around center">
+            <form class="example-form">
+                <div fxLayout="row">
+                    <h4> Question 1 </h4>
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Enter Questions" [(ngModel)]="question">
+                    </mat-form-field>
+                    <button mat-raised-button (click)="addQuestion()"> Add Question </button>
+
+                </div>
+
+                <h4> Answer </h4>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Answer 1">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Answer 2">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Answer 3">
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Answer 4">
+                </mat-form-field>
+                <button mat-raised-button> Add Answers List </button>
+            </form>
+        </div>
+        <div>
+            <h2> Lists </h2>
+            <div *ngfor="let list of dataList; let i=index">
+                <h5> {{list}}</h5>
+            </div>
+        </div>
+    </div>
+</mat-card>
